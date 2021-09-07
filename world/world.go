@@ -23,8 +23,15 @@ func NewWorld(width int) World {
 		PaddedWidth: paddedWidth}
 }
 
-func InitializeWorld(world World) {
+// Spawns a glider patters in the world's top left corner
+func SpawnGlider(world World) {
+	world.Cells[Sub2Ind(world, 1, 3)] = true
+	world.Cells[Sub2Ind(world, 2, 3)] = true
+	world.Cells[Sub2Ind(world, 3, 3)] = true
 
+	world.Cells[Sub2Ind(world, 2, 1)] = true
+
+	world.Cells[Sub2Ind(world, 3, 2)] = true
 }
 
 func UpdateWorld(world World) {
