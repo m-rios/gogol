@@ -1,14 +1,14 @@
 package main
 
 import (
-    "fmt"
-    w "github.com/m-rios/gogol/world"
-    r "github.com/m-rios/gogol/renderer"
+	"fmt"
+	r "github.com/m-rios/gogol/renderer"
+	w "github.com/m-rios/gogol/world"
 )
 
 func main() {
-    world := w.NewWorld(2)
-    w.UpdateWorld(world)
-    r.PrintWorld(world)
-    fmt.Println(world.Cells)
+	world := w.NewWorld(2)
+	w.UpdateWorld(world)
+	r.PrintWorld(world)
+	fmt.Println(world.Cells)
 }
