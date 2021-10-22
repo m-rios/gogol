@@ -7,7 +7,8 @@ import (
 
 func main() {
 	world := w.NewWorld(16)
-	w.SpawnGlider(world)
-	// w.UpdateWorld(world)
-	r.PrintWorld(world)
+	// w.SpawnGlider(world)
+	newWorld := w.NewWorld(16)
+	w.UpdateWorld(&world, &newWorld)
+	r.PrintWorld(&world)
 }
