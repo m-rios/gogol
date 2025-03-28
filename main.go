@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"os/signal"
 	"syscall"
@@ -10,6 +11,8 @@ import (
 
 // x,y coordinates (so x is rows and y columns)
 type world [80][22]int
+
+const generationMode string = "random"
 
 // x,y coordinates of the directions where to find neighbors
 var directions = [][]int{
@@ -96,6 +99,15 @@ func initializeWorld(w *world) {
 	w[36][4] = 1
 }
 
+func initializeWorldRandomly(w *world) {
+	for x := 1; x < 80; x++ {
+		for y := 1; y < 22; y++ {
+			rnd := rand.Int()
+			w[x][y] = rnd % 2
+		}
+	}
+}
+
 func printWorld(w world) {
 	for y := 0; y < 22; y++ {
 		for x := 0; x < 80; x++ {
@@ -154,7 +166,11 @@ func updateWorld(oldWorld, newWorld *world) {
 func main() {
 	var oldWorld, world world
 
-	initializeWorld(&world)
+	if generationMode == "random" {
+		initializeWorldRandomly(&world)
+	} else {
+		initializeWorld(&world)
+	}
 
 	// Create a channel to receive signals
 	sigs := make(chan os.Signal, 1)
